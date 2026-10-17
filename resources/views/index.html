@@ -43,9 +43,114 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<style>
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  padding: 16px 36px 40px;
+  background: #3b48c0;
+  font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #212529;
+}
+
+.breadcrumb li { color: #000001; font-size: 10px; font-weight:100 ; letter-spacing: 1;}
+.breadcrumb , li { color: #002aff; font-family: 'Times New Roman', Times, serif;}
+
+/* Breadcrumb */
+.breadcrumb {
+  background: #5aa1a7;
+  padding: 12px 14px;
+  border-radius: 4px;
+  margin: 0 0 14px;
+  color: #67747f;
+  list-style: none;
+  display: flex;
+  gap: 8px;
+}
+.breadcrumb li + li::before { content: "/"; margin-right: 8px; color: #6c757d; }
+
+/* Layout */
+.layout { display: grid; grid-template-columns: 490px 1fr; gap: 14px; ; }
+.card {
+  background: #5aa1a7;
+  border-radius: 4px;
+  box-shadow: 0 5px 3px rgb(8, 8, 14);
+}
+
+
+
+/* Kartu profil */
+.profile { text-align: center; padding: 14px 16px 20px; }
+.profile img { width: 250px; height: 150px; display: block; margin: 0 auto 10px; border-radius: 10px; }
+.profile h2 { margin: 0 0 14px; font-size: 20px; font-weight: 500; font-family: 'Times New Roman', Times, serif; }
+.profile p { margin: 0 0 4px; color: #060606; font-size: 14px; }
+.btns { margin-top: 14px; display: flex; gap: 4px; justify-content: center; }
+.btn {
+  padding: 6px 12px; border-radius: 3px; font-size: 14px; cursor: pointer;
+  border: 1px solid #7fa2cd; font-family: inherit;
+}
+.btn-primary { background: #2859f9; color: #dee6df; font-family: 'Times New Roman', Times, serif; }
+.btn-primary a , button:hover { background-color: #000001;}
+.btn-outline { background: #10b1b7; color: #000ed6; font-family: 'Times New Roman', Times, serif;}
+.bca-info { background: #2859f9; border-color: #dddeea; color: #eb7c7c; font-family: 'Times New Roman', Times, serif;}
+.bca-info button , a:hover {background-color: #000001;}
+.bca-info button {text-indent: 100px;}
+.bca-info a { color: #eeeef0;}
+.bca-info a:hover { color: #ffffff;}
+/*a:nth-cild(odd)  button:hover {  background-color: #cdb9b9; color:#04be5b }*/
+
+/* Daftar sosial */
+.social { list-style: none; margin: 14px 0 0; padding: 6px 13px 13px;}
+.social li {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 16px 16px; border-bottom: 1px solid #e3e6ea;
+}
+.social li:last-child  { border-bottom: 0;}
+.social svg  { width: 22px; height: 22px; flex: none; }
+.social .name { font-weight: 500; font-size: 15; }
+.social .val { margin-left: auto; color: #000000; font-size: 15; font-family: 'Times New Roman', Times, serif; }
+.social li:nth-child(odd) {color: #000000; }
+.social li:nth-child(odd) span:hover { color: #002aff;}
+
+/* Detail */
+.detail { padding: 6px 13px 13px; }
+.row {
+  display: grid; grid-template-columns: 148px 1fr;
+  padding: 14px 0 ; border-bottom: 1px solid #e3e6ea;
+}
+.row dt { font-weight: 600; margin: 0; font-family: 'Times New Roman', Times, serif; font-size: 15 ; }
+.row dd { margin: 0; color: #000000; font-family: 'Times New Roman', Times, serif; font-size: 15; }
+.detail dl { margin: 0 0 14px; }
+.detail .row:last-child { border-bottom: 0; }
+
+
+/* Project status */
+.projects { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px; }
+.project { padding: 14px 13px 18px; }
+.project h3 { margin: 0 0 12px; font-size: 18px; font-weight: 500; font-family: 'Times New Roman', Times, serif; text-decoration: underline;}
+.project p {font-family: 'Times New Roman', Times, serif; font-size: 15; text-align: justify;}
+.project h3 em { color: #0c0b0b; font-weight: 400; margin-right: 6px; font-size: 17; width: 15; }
+.project form select { display: block; font-size: 15px; margin: 0 0 4px; font-family: 'Times New Roman', Times, serif;}
+.project table tr td { font-family: 'Times New Roman', Times, serif; color: #020204; text-align: justify;}
+.Project table { color: #002aff; background-color: #d3d8ed; font-size: 15;}
+.bar { height: 4px; background: #e9ecef; border-radius: 2px; margin-bottom: 18px; overflow: hidden; }
+.bar span { display: block; height: 100%; background: #007bff;}
+
+
+@media (max-width: 860px) {
+  body { padding: 12px; }
+  .layout, .projects { grid-template-columns: 1fr; }
+  .row { grid-template-columns: 110px 1fr; }
+}
+
+</style>
 
 <ol class="breadcrumb">
-  <li>PROFILE</li>
+  <li>
+    <h1>PROFILE KARYAWAN</h1>
+  </li>
 </ol>
 
 <div class="layout">
@@ -55,18 +160,18 @@
     <div class="card profile">
       <!-- Avatar (SVG sederhana) -->
       <img src="adit3.jpg" alt="foto Adit" title="Foto adit" width="250px" height="200px"> 
-        <path d="M10 150c0-30 30-42 65-42s65 12 65 42z" fill="#222"/>
+        <!--<path d="M10 150c0-30 30-42 65-42s65 12 65 42z" fill="#222"/>
         <path d="M62 100h26v18c-8 6-18 6-26 0z" fill="#f3c9a0"/>
         <ellipse cx="75" cy="68" rx="32" ry="38" fill="#f6d2ae"/>
-        <path d="M42 62c-4-30 12-46 34-46s36 14 32 46c-4-14-12-20-32-20s-28 6-34 20z" fill="#3b2a20"/>
-        <g fill="none" stroke="#222" stroke-width="3">
+        <path d="M42 62c-4-30 12-46 34-46s36 14 32 46c-4-14-12-20-32-20s-28 6-34 20z" fill="#3b2a20"/>-->
+        <!--<g fill="none" stroke="#222" stroke-width="3">
           <rect x="48" y="60" width="22" height="16" rx="5"/>
           <rect x="80" y="60" width="22" height="16" rx="5"/>
           <path d="M70 66h10"/>
-        </g>
-        <circle cx="59" cy="68" r="4" fill="#4a90c2"/>
+        </g>-->
+        <!--<circle cx="59" cy="68" r="4" fill="#4a90c2"/>
         <circle cx="91" cy="68" r="4" fill="#4a90c2"/>
-        <path d="M68 92q7 4 14 0" stroke="#a5624a" stroke-width="2" fill="none"/>
+        <path d="M68 92q7 4 14 0" stroke="#a5624a" stroke-width="2" fill="none"/>-->
       <h2><strong>Halo!</strong>, Saya Muhamad Aditiya</h2>
       <p>Full Stack Developer</p>
       <p>Bandung, West Java, Indonesia</p>
@@ -124,7 +229,6 @@
         <div class="row"><dt>Universitas</dt><dd>Al-Ghifari</dd></div>
         <div class="row"><dt>ALamat</dt><dd>Cijambe Indah, Jl.Vijayakusumah X, No.C10</dd></div>
       </dl>
-      <button class="btn btn-info"><a href="Web Profil Adit.html">Klik</a></button>
     </div>
     
 
@@ -133,7 +237,7 @@
     <div class="projects">
       <div class="card project">
         <h3><i>About</i></h3>
-        <p>Assalamualaikum wr.wb ,halo gyus kenalin nama saya muhamad aditiya,umur saya 19 tahun,saya saat ini sedang menjalani masa kuliah di Universitas Al-Ghifari ,Fakultas Teknologi Informasi dengan program studi S1 Sistem Informasi,hari ini saya telah menduduki bangku disemester tiga ,dan alhamduliah nilai IPK saya waktu di semester 1 dan 2 cukup bagus ,yaitu dengan IPK konsisten 3,5 dan saya ingin meningkatkan kualitas ilmu saya dalam perkuliahan ini agar saya mendapatkan IPK 4.00</p>
+        <p>Assalamualaikum wr.wb ,halo teman-teman perkenalkan nama saya muhamad aditiya,umur saya 19 tahun,tempat tinggal saya berada di cijambe indah, Jl.Vijayakusumah No.C10, Jawa barat kota bandung, saat ini saya sedang menjaankan kuliah di Universitas Al-Ghifari ,Fakultas Teknologi Informasi dengan program studi S1 Sistem Informasi,saat ini saya menduduki bangku kuliah disemester tiga , hobi saya cukup banyak diantaranya bermain bola/futsal ,badminton ,dan tenis meja, cita-cita saya tentunya menjadi seorang software engginer yang profesional. </p>
         
       </div>
 
@@ -167,8 +271,13 @@
         <td>PTS</td>
         <td>UNIVERSITAS AL-GHIFARI</td>
     </tr>
+    
 </table>
 <br>
+<button class="btn bca-info"><a href="login.html">Undo</a></button>
+<button class="btn bca-info"><a href="Web Profil Adit.html">Next</a></button>
+<br>
+
         
       </div>
     </div>
